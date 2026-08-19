@@ -1,6 +1,14 @@
-const usuario = {nome, nivel}
 
-const nivel =0
+const user = {
+    nome: "",
+    sobrenome: "",
+    dataNascimento: "",
+    CPF: "",
+    email: "",
+    senha: "",
+    nivel: 0,
+};
+
 // Niveis
 // 4.Direção
 // 3.Coordenação
@@ -9,14 +17,13 @@ const nivel =0
 // 0.Vistante
 
 const pagina = document.querySelector('body');
+
 const title = document.querySelector('title');
 
+// login
 addEventListener('DOMContentLoaded', function Login() {
-    title.innerHTML = `Login`;
-    pagina.innerHTML = `
-        <body>
-            <header>
-            </header>
+
+    pagina.insertAdjacentHTML("beforeend", `
             <main>
                 <img src="logo.png" alt="Logo IFMS" width="100px" height="100px">
                 <h1>Login</h1>
@@ -27,25 +34,42 @@ addEventListener('DOMContentLoaded', function Login() {
                     <div>
                         <input type="password" id="password" name="password" placeholder="Senha" required>
                     </div>
-                    <a scr="esqueci">Esqueceu sua senha?</a>
                     <div id="buttons">
-                        <button type="submit" onclick="PaginaParticipante()">Entrar</button>
-                        <button type="submit" id="inscrição" onclick="Inscrição()">Increva-se</button>
-                        <button type="submit" id="area-servico" onclick="PaginaAreaServico()">Area Serviço</button>
+                        <button type="submit" onclick="PaginaAreaParticipante()">
+                            Entrar
+                        </button>
+                        <button type="submit" id="area-servico" onclick="PaginaAreaServico()">
+                        Entrar Area Serviço
+                        </button>
                     </div>
                 </form>
             </main>
-        </body>
-    </html>`;
+    `);
 });
+
 function PaginaAreaParticipante(){
+    if(nivel >= 0){
+        title.insertAdjacentHTML("beforeend", "Bem, vindo visitantes")
+        pagina.insertAdjacentHTML("beforeend", `
+            <h1>Bem vindo a area de visitantes</h1>
+            <button id="addEvento" onclick="AdicionarEvento()">Increver-se</button>
+    `);
+    }
+    
+    if(nivel >= 1){
+        title.insertAdjacentHTML("beforeend", "Bem, vindo Monitor")
+        pagina.insertAdjacentHTML("beforeend", `
+            <h1>Bem vindo a area de monitores</h1>
+            <button id="addEvento" onclick="AdicionarEvento()">Registrar Presença</button>
+        `);
+    }
 
     if(nivel >= 2){
-        title.insertAdjacentHTML("Bem, vindo Monitor")
-        pagina.insertAdjacentHTML = `
+        title.insertAdjacentHTML("beforeend", "Bem, vindo Monitor")
+        pagina.insertAdjacentHTML("beforeend", `
             <h1>Bem vindo a area de monitores</h1>
-        `;
-
+            <button id="addEvento" onclick="AdicionarEvento()">Registrar Presença</button>
+        `);
     }
 }
 
@@ -61,7 +85,6 @@ function PaginaAreaServico() {
             </header>
             
         `;
-
         if (nivel >= 4) {
             pagina.innerHTML =
                 `<header>
@@ -143,11 +166,12 @@ function Inscrição() {
         </div>
     `;
     function Cadastrar(){
-    const cadastro = {nome, sobrenome, dataNascimento, CPF, email, senha, nivel:0}
-        cadastro.nome = querySelector("#nome").value;
-        cadastro.sobrenome = querySelector(#sobrenome).value
-        cadastro.cpf = querySelector(#cpf).value
-        cadastro.sobrenome = querySelector(#sobrenome).value
-        cadastro.sobrenome = querySelector(#sobrenome).value
+
+        cadastro.nome = document.querySelector("#nome").value;
+        cadastro.sobrenome = document.querySelector("#sobrenome").value;
+        cadastro.cpf = document.querySelector("#cpf").value;
+        cadastro.dataNascimento = document.querySelector("#idade").value;
+        cadastro.email = document.querySelector("#email").value;
+        cadastro.senha = document.querySelector("#senha").value;
     }
 }
